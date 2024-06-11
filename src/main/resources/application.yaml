@@ -1,0 +1,33 @@
+server:
+  port: 8888
+
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.vault.config.VaultAutoConfiguration
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Booker-nyximos/config-server.git
+          username: ${vault.git.id}
+          password: ${vault.git.password}
+          ## branch
+          default-label: main
+        vault:
+          host: 127.0.0.1
+          port: 8200
+          scheme: http
+          uri: http://127.0.0.1:8200
+          token:
+          authentication: token
+          kv:
+            version: 2
+            backend: booker
+            profiles: develop
+
+eureka:
+  client:
+    enabled: false
