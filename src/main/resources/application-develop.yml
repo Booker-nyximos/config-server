@@ -3,23 +3,19 @@ server:
 
 spring:
   application:
-    name: config-service
+    name: config-server
   cloud:
     config:
       server:
         git:
           uri: https://github.com/Booker-nyximos/cloud-config.git
-          username: ${vault.git.id}
-          password: ${vault.git.password}
+          username: nyximos
+          password:
           default-label: develop
         vault:
           host: 127.0.0.1
           port: 8200
-          scheme: http
-          uri: http://127.0.0.1:8200
-          token:
+          kv-version: 2
+          backend: booker
           authentication: token
-          kv:
-            version: 2
-            backend: booker
-            profiles: develop
+          token:
